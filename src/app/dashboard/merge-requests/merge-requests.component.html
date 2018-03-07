@@ -1,0 +1,24 @@
+<div class="content">
+  <h4>Open MR's
+    <span class="tag is-medium" [ngClass]="{'is-success': mergeRequests?.length === 0, 'is-warning': mergeRequests?.length > 0 && mergeRequests?.length < 5, 'is-danger': mergeRequests?.length > 4}">{{mergeRequests?.length}}</span>
+  </h4>
+  <birdperson-loading *ngIf="isLoading"></birdperson-loading>
+
+  <div class="merge_req" [ngClass]="{'ci_success': mergeReq.ci_status === 'success', 'ci_pending': (mergeReq.ci_status === 'pending' || mergeReq.ci_status === 'running'), 'ci_failed': mergeReq.ci_status === 'failed'}"
+    *ngFor="let mergeReq of mergeRequests">
+    <p>
+      <span class="has-text-weight-bold">{{mergeReq.project?.name}}</span> {{mergeReq.title}}</p>
+    <div class="columns">
+      <div class="column is-two-fifths">
+        <div class="tags has-addons">
+          <span class="tag is-medium">
+            <img class="image is-24x24" src="../../../assets/thumbsup.png">
+          </span>
+          <span class="tag is-medium" [ngClass]="{'is-success': mergeReq.upvotes > 1, 'is-warning': mergeReq.upvotes === 1, 'is-danger': mergeReq.upvotes < 1}">{{mergeReq.upvotes}}</span>
+        </div>
+      </div>
+      <div class="column has-text-right has-text-grey">
+        {{mergeReq.created_at | dfnsDistanceInWordsToNow}} ago</div>
+    </div>
+  </div>
+</div>

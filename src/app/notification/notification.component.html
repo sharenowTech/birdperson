@@ -1,0 +1,3 @@
+<div *ngIf="notification !== null" class="notification" [ngClass]="notification.level || 'is-danger'">
+  {{notification.message}}
+</div>

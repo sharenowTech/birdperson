@@ -1,0 +1,21 @@
+@import '~bulma/sass/utilities/_all';
+
+.content {
+  h4 {
+    color: cornsilk;
+  }
+  .merge_req {
+    background-color: #ccc;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    &.ci_success {
+      border-left: 0.5rem solid $success;
+    }
+    &.ci_pending {
+      border-left: 0.5rem solid $warning;
+    }
+    &.ci_failed {
+      border-left: 0.5rem solid $danger;
+    }
+  }
+}

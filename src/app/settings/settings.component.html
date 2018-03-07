@@ -1,0 +1,88 @@
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="columns">
+      <div class="column is-two-fifths">
+        <figure class="image is-square">
+          <img src="../../assets/birdperson.jpg">
+        </figure>
+      </div>
+      <div class="column">
+        <h1 class="title">Birdperson</h1>
+        <p class="subtitle">Brougth to you by</p>
+        <div class="columns">
+          <div class="column">
+            <figure class="image is-square">
+              <img src="../../assets/logo_blue.svg">
+            </figure>
+          </div>
+          <div class="column">
+            <figure class="image is-square">
+              <img src="../../assets/meeseeks.png">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="settingsForm" novalidate>
+      <div class="field">
+        <label class="label">GitLab location</label>
+        <div class="field-body">
+          <div class="field is-narrow">
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="isGitlabDotCom" value="true" formControlName="isGitlabDotCom"> GitLab.com
+              </label>
+              <label class="radio">
+                <input type="radio" name="isGitlabDotCom" value="false" formControlName="isGitlabDotCom"> Self-hosted
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field" *ngIf="settingsForm.value.isGitlabDotCom === 'false'">
+        <label class="label">
+          GitLab address
+        </label>
+        <div class="control">
+          <input type="text" class="input" formControlName="gitlabAddress">
+        </div>
+        <p class="help">Required</p>
+      </div>
+
+      <div class="field">
+        <label class="label">
+          Access Token
+        </label>
+        <div class="control">
+          <input type="text" class="input" formControlName="accessToken">
+        </div>
+        <p class="help">Required</p>
+      </div>
+
+      <div class="field">
+        <label class="label">Namespace</label>
+        <div class="control">
+          <input type="text" class="input" formControlName="namespace">
+        </div>
+        <p class="help">Optional</p>
+      </div>
+
+      <div class="field is-pulled-right">
+        <p class="control">
+          <button type="submit" class="button is-success" (click)='onSubmit()' [disabled]="settingsForm.pristine || settingsForm.invalid">
+            Save
+          </button>
+        </p>
+        <!-- <p class="control">
+          <button type="cancel" class="button is-light" (click)='onCancel()'>
+            Cancel
+          </button>
+        </p> -->
+      </div>
+    </form>
+    <!-- <p>Form value: {{ settingsForm.value | json }}</p> -->
+  </div>
+  <button (click)="hide()" class="modal-close is-large" aria-label="close"></button>
+</div>

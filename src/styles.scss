@@ -1,0 +1,12 @@
+// https://bulma.io/documentation/overview/customize/
+@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/sass/utilities/functions';
+
+html,
+body {
+  background-color: #333;
+  min-height: 100vh;
+  // font-size: 16px !important;
+}
+
+@import '~bulma/bulma';

@@ -1,0 +1,27 @@
+<div class="content">
+  <h4>Pipelines</h4>
+</div>
+<birdperson-loading *ngIf="isLoading"></birdperson-loading>
+<div class="columns is-multiline">
+  <div class="column pipeline" [ngClass]="pipeline.status" *ngFor="let pipeline of pipelines">
+    <div class="project">
+      <div class="content">
+        <h5>
+          <!-- <img class="image is-24x24" src="{{pipeline.project?.avatar_url}}">  -->
+          {{pipeline.project?.name}}
+        </h5>
+      </div>
+    </div>
+    <p>
+      <strong>
+        {{pipeline.ref}}
+      </strong>
+    </p>
+    <p>
+      {{pipeline.user?.name}}
+    </p>
+    <p class="timestamp has-text-right has-text-grey-lighter">
+      {{pipeline.updated_at | dfnsDistanceInWordsToNow}} ago
+    </p>
+  </div>
+</div>

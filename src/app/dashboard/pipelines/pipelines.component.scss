@@ -1,0 +1,47 @@
+.content {
+  h4 {
+    color: cornsilk;
+  }
+}
+.pipeline {
+  // box-shadow: 3px 3px 5px 3px #ccc;
+  border: 1px solid gray;
+  margin: 0.5rem;
+  min-width: 12rem;
+  background-color: #aaa;
+  color: white;
+  strong {
+    color: #ccc;
+  }
+  &.success {
+    background-color: green;
+  }
+  &.failed {
+    background-color: red;
+  }
+  &.running,
+  &.pending {
+    background-color: orange;
+  }
+  .timestamp {
+    border-top: 1px solid #ccc;
+  }
+  .project {
+    color: black;
+    h5 {
+      margin-bottom: 0;
+    }
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    padding: 0.25rem;
+    figure {
+      // margin: 1rem 0 1rem 1rem;
+      margin-right: 1rem;
+      img {
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

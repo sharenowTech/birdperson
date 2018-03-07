@@ -1,0 +1,10 @@
+version: '2'
+services:
+  frontend:
+    build: .
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "4200:4200"
+    command: npm start
