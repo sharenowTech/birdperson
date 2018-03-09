@@ -8,12 +8,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 import { NotificationService } from '../notification/notification.service';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable()
 export class GitlabApiService {
   constructor(
     private _http: HttpClient,
-    private _notifSrv: NotificationService
+    private _notifSrv: NotificationService,
+    private _settingsSrv: SettingsService
   ) {}
 
   get mergeRequests() {
@@ -38,7 +40,17 @@ export class GitlabApiService {
 
   get projects() {
     return this._http
-      .get<any[]>('projects?owned=true&order_by=last_activity_at&per_page=100')
+      .get<any[]>(
+        `projects?search=${
+          this._settingsSrv.settings.namespace
+        }&order_by=last_activity_at&per_page=100`
+      )
+      .map(projects => {
+        return projects.filter(
+          project =>
+            project.namespace.name === this._settingsSrv.settings.namespace
+        );
+      })
       .pipe(
         retryWhen(err => {
           return err.pipe(
@@ -79,7 +91,6 @@ export class GitlabApiService {
   fetchLastPipelineByRef(projectId, ref) {
     return this._http
       .get<any[]>(`projects/${projectId}/pipelines?ref=${ref}&per_page=1`)
-      .map(resp => resp[0].status)
       .pipe(
         retryWhen(err => {
           return err.pipe(

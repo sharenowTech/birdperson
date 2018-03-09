@@ -28,7 +28,7 @@ export class MergeRequestsComponent implements OnInit, OnDestroy {
     const mergeReqs$ = this._api.mergeRequests.subscribe(
       mergeRequests => {
         this._subscriptions.push(mergeReqs$);
-        mergeRequests.forEach((mergeRequest, index) => {
+        mergeRequests.forEach(mergeRequest => {
           const project$ = this._api
             .fetchProject(mergeRequest.project_id)
             .subscribe(project => {
